@@ -1,4 +1,4 @@
-const app = angular.module('myApp', []);
+const app = angular.module('myApp', ['angularUtils.directives.dirPagination']);
 
 const randomController = app.controller('RandomController', ['$http', function($http){
     let self = this;
@@ -33,10 +33,12 @@ const searchController = app.controller('SearchController', ['$http', function($
     self.searchClick = function (search) {
     $http({
         method:'GET',
-        url:`${url}${search}${key}${limit}`
+        url:`${url}${search}${key}`
     }).then(function (response) {
         console.log(response);
         self.searchGif = response.data.data;
+        console.log(self.searchGif.length);
+        
     }).catch(function (error) {
         console.log(error);
     })

@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="vendors/angular.min.js"></script>
+    <script src="vendors/dirPagination.js"></script>
     <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.css">
+
     <title>Gettin' Giphy Wit It</title>
 </head>
 <body>
@@ -17,8 +20,13 @@
     <div ng-controller="SearchController as sc">
        <label> Search: <input type="text" ng-model="searchText"> </label> 
        <button ng-click = "sc.searchClick(searchText)">Search!</button>
-        <div ng-repeat="gif in sc.searchGif">
-            <img src= "{{gif.images.downsized.url}}" height="200" width="267">
+       <dir-pagination-controls
+       max-size="5"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls>
+        <div dir-paginate="gif in sc.searchGif | orderBy:sortKey:reverse|itemsPerPage:5" class="container-fluid">
+            <img class="col-md-3" src= "{{gif.images.downsized.url}}" height="200" width="267">
         </div> 
     </div>
 </body>
