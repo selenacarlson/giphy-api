@@ -9,6 +9,10 @@
     <title>Gettin' Giphy Wit It</title>
 </head>
 <body>
-    
+    <div ng-controller="RandomController as rc">
+        <h1>Random Gif</h1>
+        <button ng-click="rc.randomClick()">Random</button>
+        <img src="{{rc.randomGif}}" alt="we still suck" height="200" width="267">
+    </div>
 </body>
 </html>
