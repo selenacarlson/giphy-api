@@ -14,5 +14,12 @@
         <button ng-click="rc.randomClick()">Random</button>
         <img src="{{rc.randomGif}}" alt="we still suck" height="200" width="267">
     </div>
+    <div ng-controller="SearchController as sc">
+       <label> Search: <input type="text" ng-model="searchText"> </label> 
+       <button ng-click = "sc.searchClick(searchText)">Search!</button>
+        <div ng-repeat="gif in sc.searchGif">
+            <img src= "{{gif.images.downsized.url}}" height="200" width="267">
+        </div> 
+    </div>
 </body>
 </html>

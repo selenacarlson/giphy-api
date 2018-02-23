@@ -20,12 +20,26 @@ const randomController = app.controller('RandomController', ['$http', function($
             console.log(error);
         })
     }
+}]) // end random controller
+
+const searchController = app.controller('SearchController', ['$http', function($http){
+    let self = this;
+    const key = '&api_key=E7TO2O1LpPCE4vO8irCzKRWuufas0vyZ';
+    const url = 'http://api.giphy.com/v1/gifs/search?q='
+    const limit = '&limit=20';
+    self.searchGif = [];
 
 
+    self.searchClick = function (search) {
+    $http({
+        method:'GET',
+        url:`${url}${search}${key}${limit}`
+    }).then(function (response) {
+        console.log(response);
+        self.searchGif = response.data.data;
+    }).catch(function (error) {
+        console.log(error);
+    })
+}
     
-
-
-
-
-
 }])
