@@ -2,13 +2,12 @@ const app = angular.module('myApp', ['angularUtils.directives.dirPagination']);
 
 const randomController = app.controller('RandomController', ['$http', function($http){
     let self = this;
-    const key = '&api_key=E7TO2O1LpPCE4vO8irCzKRWuufas0vyZ';
     self.randomGif = [];
 
     self.randomClick = function(){
         $http({
             method: 'GET',
-            url: `http://api.giphy.com/v1/gifs/random?${key}`
+            url: '/giphy/random'
         })
         .then( function (response){
             console.log(response.data.data.images.downsized.url);
@@ -24,7 +23,6 @@ const randomController = app.controller('RandomController', ['$http', function($
 
 const searchController = app.controller('SearchController', ['$http', function($http){
     let self = this;
-    const key = '&api_key=E7TO2O1LpPCE4vO8irCzKRWuufas0vyZ';
     const url = 'http://api.giphy.com/v1/gifs/search?q='
     const limit = '&limit=20';
     self.searchGif = [];
